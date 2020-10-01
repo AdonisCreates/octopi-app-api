@@ -53,6 +53,18 @@ end
     def set_user
       @user = User.find(params[:id])
     end
+    
+    def payload(id, username)
+      {
+        exp: (Time.now + 30.minutes).to_i,
+        iat: Time.now.to_i,
+        iss: ENV['JWT_ISSUER'],
+        user: {
+          id: id,
+          username: username
+        }
+      }
+    end
 
     # Only allow a trusted parameter "white list" through.
     def user_params
