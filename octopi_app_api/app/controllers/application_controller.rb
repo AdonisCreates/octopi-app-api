@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
   end
   
   def bearer_token
-    header = request.env[]
+    # header = request.env()
     puts "BEARER TOKEN"
     puts header = request.env["HTTP_AUTHORIZATION"]
 
