@@ -49,10 +49,14 @@ end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
+    # Create token
+    def create_token(id, username)
+      JWT.encode(payload(id, username), ENV['JWT_SECRET'], 'HS256')
     end
+    
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
 
     # CREATE PAYLOAD
 
@@ -67,14 +71,6 @@ end
         }
       }
     end
-
-    # Create token
-
-    def create_token(id, username)
-      JWT.encode(payload(id, username), ENV['JWT_SECRET'], 'HS256')
-    end
-
-
 
     # Only allow a trusted parameter "white list" through.
     def user_params
