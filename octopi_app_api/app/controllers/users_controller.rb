@@ -25,8 +25,6 @@ class UsersController < ApplicationController
       render json: { status: 401, message: "Unauthorized" }                        
     end                                                                            
   end
-
-
   # POST /users
   def create
     @user = User.new(user_params)
@@ -74,9 +72,6 @@ class UsersController < ApplicationController
       }
     }
   end
-
-   
-
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:username, :password, :password_digest)
