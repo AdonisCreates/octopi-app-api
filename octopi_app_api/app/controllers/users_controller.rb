@@ -53,7 +53,9 @@ end
     def set_user
       @user = User.find(params[:id])
     end
-    
+
+    # CREATE PAYLOAD
+
     def payload(id, username)
       {
         exp: (Time.now + 30.minutes).to_i,
@@ -65,6 +67,14 @@ end
         }
       }
     end
+
+    # Create token
+
+    def create_token(id, username)
+      JWT.encode(payload(id, username), ENV['JWT_SECRET'], 'HS256')
+    end
+
+
 
     # Only allow a trusted parameter "white list" through.
     def user_params
