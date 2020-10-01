@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-
-
+  before_action :authenticate_token, except: [:login, :create]
+  
   def login                                                                        
     user = User.find_by(username: params[:user][:username])                        
     if user && user.authenticate(params[:user][:password])                         
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: get_current_user
   end
 
   # POST /users
