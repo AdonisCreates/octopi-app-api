@@ -156,7 +156,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
-  dotenv-rails (~> 2.1, >= 2.1.1)
+  dotenv-rails
   jwt
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
